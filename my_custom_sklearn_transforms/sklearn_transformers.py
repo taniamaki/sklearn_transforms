@@ -1,5 +1,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-
+from sklearn.preprocessing import MinMaxScaler
+from imblearn.over_sampling import SMOTE
+import pandas as pd
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
@@ -15,7 +17,6 @@ class DropColumns(BaseEstimator, TransformerMixin):
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
 
-from sklearn.preprocessing import MinMaxScaler
 #Normalizar colunas
 class Normalizar:
     def __init__(self):
@@ -32,8 +33,6 @@ class Normalizar:
         data2[cols] = mms.fit_transform(self[cols])
         return data2
 
-from imblearn.over_sampling import SMOTE
-import pandas as pd
 class Balance:
     def __init__(self):
         self.data = []
