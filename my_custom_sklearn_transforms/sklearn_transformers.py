@@ -14,3 +14,20 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
+
+from sklearn.preprocessing import MinMaxScaler
+#Normalizar colunas
+class Normalizar:
+    def __init__(self):
+        self.data = []
+        
+    def transformar(self):
+        mms =  MinMaxScaler()
+        cols = [
+               "REPROVACOES_DE", "REPROVACOES_EM", "REPROVACOES_MF", "REPROVACOES_GO",
+               "NOTA_DE", "NOTA_EM", "NOTA_MF", "NOTA_GO",
+               "INGLES", "H_AULA_PRES", "TAREFAS_ONLINE", "FALTAS", 
+        ]
+        data2 = self.copy()
+        data2[cols] = mms.fit_transform(self[cols])
+        return data2
