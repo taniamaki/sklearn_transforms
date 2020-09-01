@@ -31,3 +31,26 @@ class Normalizar:
         data2 = self.copy()
         data2[cols] = mms.fit_transform(self[cols])
         return data2
+
+from imblearn.over_sampling import SMOTE
+class Balance:
+    def __init__(self):
+        self.data = []
+        
+    def transformar(self):
+        smt = SMOTE()
+        # Definição das colunas que serão features (nota-se que a coluna NOME não está presente)
+        features = [
+                "MATRICULA", 'REPROVACOES_DE', 'REPROVACOES_EM', "REPROVACOES_MF", "REPROVACOES_GO",
+                "NOTA_DE", "NOTA_EM", "NOTA_MF", "NOTA_GO",
+                "INGLES", "H_AULA_PRES", "TAREFAS_ONLINE", "FALTAS", 
+                ]
+        # Definição da variável-alvo
+        target = ["PERFIL"]
+
+        # Preparação dos argumentos para os métodos da biblioteca ``scikit-learn``
+        X = self[features]
+        y = self[target]
+           
+        X, y = smt.fit_sample(X, y)    
+        return X, y
