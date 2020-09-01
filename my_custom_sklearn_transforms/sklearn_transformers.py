@@ -33,6 +33,7 @@ class Normalizar:
         return data2
 
 from imblearn.over_sampling import SMOTE
+import pandas as pd
 class Balance:
     def __init__(self):
         self.data = []
@@ -53,4 +54,5 @@ class Balance:
         y = self[target]
            
         X, y = smt.fit_sample(X, y)    
-        return X, y
+        
+        return pd.DataFrame(X, columns=X.columns)
