@@ -33,4 +33,11 @@ class Normalizar:
         data2[cols] = mms.fit_transform(self[cols])
         return pd.DataFrame(data2, columns=data2.columns)
 
-
+class SmoteResample(object):
+    def __init__(self):
+        pass
+    
+    def fit(self, X, y):
+        X_resampled, y_resampled = SMOTE().fit_resample(X, y)
+        X_resampled = pd.DataFrame(X_resampled, columns=X.columns)
+        return X_resampled, y_resampled
