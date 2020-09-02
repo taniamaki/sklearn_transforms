@@ -31,6 +31,6 @@ class Normalizar:
         ]
         data2 = self.copy()
         data2[cols] = mms.fit_transform(self[cols])
-        return data2
+        return pd.DataFrame(data2, columns=data2.columns)
 
 
